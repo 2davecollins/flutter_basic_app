@@ -18,7 +18,7 @@ class _AboutPageState extends State<AboutPage> {
           width: 150,
           decoration: BoxDecoration(
               color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-          child: FlatButton(
+          child: TextButton(
             onPressed: () {
               Navigator.pop(context);
             },

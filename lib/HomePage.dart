@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'AboutPage.dart';
+import 'LocalmapPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,10 +19,10 @@ class _HomePageState extends State<HomePage> {
           width: 150,
           decoration: BoxDecoration(
               color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-          child: FlatButton(
+          child: TextButton(
             onPressed: () {
               Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => AboutPage()));
+                      context, MaterialPageRoute(builder: (_) => LocalmapPage()));
             },
             child: Text(
               'Welcome',
