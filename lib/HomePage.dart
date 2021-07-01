@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                       context, MaterialPageRoute(builder: (_) => LocalmapPage()));
             },
             child: Text(
-              'Welcome',
+              'To Map',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
           ),
