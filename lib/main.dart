@@ -101,7 +101,7 @@ class _LoginDemoState extends State<LoginDemo> {
                       context, MaterialPageRoute(builder: (_) => AboutPage()));
               },
               child: Text(
-                'Please Create an account',
+                'Create an account',
                 style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
             ),
