@@ -27,6 +27,8 @@ dependencies:
   flutter_map: ^0.13.1
   geolocator: ^7.2.0+1
   syncfusion_flutter_maps: ^19.2.44-beta
+  location_permissions: ^3.0.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -36,7 +38,8 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - asset/images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

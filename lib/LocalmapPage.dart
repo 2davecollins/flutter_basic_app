@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
+import 'AboutPage.dart';
+
+
+
 
 Future<Position> _determinePosition() async {
   bool serviceEnabled;
@@ -51,12 +55,19 @@ class _LocalmapPageState extends State<LocalmapPage> {
   late List<Data> _data;
   late List<Marker> _mark;
   final Geolocator geolocator = Geolocator();
-  late Position _currentPosition = new Position(longitude: 53.35014, latitude: -6.24529, timestamp: new DateTime(2021,1,1,1), accuracy: 0.00, altitude: 0.0, heading: 0.0, speed: 0.0, speedAccuracy: 0.0);
+  //late Position _currentPosition = new Position(longitude: 53.35014, latitude: -6.24529, timestamp: new DateTime(2021,1,1,1), accuracy: 0.00, altitude: 0.0, heading: 0.0, speed: 0.0, speedAccuracy: 0.0);
   
 
   @override
   void initState() {
-    _data = <Data>[Data(53.35014, -6.24529, 15), Data(53.35023, -6.24034, 13)];
+     super.initState();
+    _data = <Data>[
+      Data(53.35014, -6.24529, 1), 
+      Data(53.35023, -6.24034, 2), 
+      Data(53.32024, -6.24435, 3)
+    ];
+
+
     _mark = <Marker>[
       Marker(
         width: 80.0,
@@ -71,13 +82,54 @@ class _LocalmapPageState extends State<LocalmapPage> {
         width: 80.0,
         height: 80.0,
         point: LatLng(_data[1].lat, _data[1].lng),
+        
         builder: (ctx) => Container(
           child: FlutterLogo(),
         ),
       ),
+      Marker(
+        width: 80.0,
+        height: 80.0,
+        point: LatLng(_data[2].lat, _data[2].lng),
+        builder: (context)=> new Container(
+             decoration: BoxDecoration(
+               color: Colors.teal[50],
+               borderRadius: BorderRadius.circular(10),
+            ),
+            child: IconButton(
+               icon: Icon(Icons.maps_ugc, color: Colors.white),
+               onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => AboutPage())
+                  );                
+              },                
+            ),
+        )
+      ),
     ];
+    Future <Position> p = _determinePosition();
+    print(p.toString());
+
+    /*
+     new Marker(
+          width: 45.0,
+          height: 45.0,
+          point: new LatLng(_currentPosition.latitude,_currentPosition.longitude),
+          builder: (context)=> new Container(
+             decoration: BoxDecoration(
+               color: Colors.blue,
+               borderRadius: BorderRadius.circular(20),
+            ),
+            child: IconButton(
+               icon: Icon(Icons.accessibility, color: Colors.white),
+               onPressed: () {print('Marker tapped!');},
+            ),
+        )
+
+
+    */
+    
    
-    super.initState();
    
   }
 
@@ -88,12 +140,13 @@ class _LocalmapPageState extends State<LocalmapPage> {
   }
 
  
- void getLocation() async {
+ Future<Position> getLocation() async {
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.low,
-    );
-
-    print(position);
+    ).then((position){
+      return position;
+    });
+    return position;  
   }
   @override
   Widget build(BuildContext context) {
@@ -104,7 +157,7 @@ class _LocalmapPageState extends State<LocalmapPage> {
       body: FlutterMap(
         options: MapOptions(
           center: LatLng(_data[0].lat,_data[0].lng),
-          zoom: _data[0].zoom,
+          zoom:15,
         ),
         layers: [
           TileLayerOptions(
@@ -120,7 +173,7 @@ class _LocalmapPageState extends State<LocalmapPage> {
 class Data {
   final double lat;
   final double lng;
-  final double zoom;
-  const Data(this.lat, this.lng, this.zoom);
+  final int id;
+  const Data(this.lat, this.lng, this.id);
 }
 

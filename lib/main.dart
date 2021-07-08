@@ -41,7 +41,7 @@ class _LoginDemoState extends State<LoginDemo> {
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('../asset/images/flutter-logo.png')),
+                    child: Image.asset('asset/images/flutter-logo.png')),
               ),
             ),
             Padding(
